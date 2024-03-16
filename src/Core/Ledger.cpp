@@ -35,6 +35,7 @@ ContractState Ledger::view() {
   // Init our variables
   bool found = true;
   ContractState cs{};
+  cs.history = &this->history;
   WorkQueue work_queue = initWorkQueue(contracts);
 
   // Iteratively work through the queue as long as there are unresolved trait

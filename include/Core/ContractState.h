@@ -3,6 +3,7 @@
 
 #include "BaseType.h"
 #include "Field.h"
+#include "History.h"
 
 #include <map>
 
@@ -10,6 +11,7 @@ using TraitState = std::map<Field, BaseType>;
 
 struct ContractState {
   std::map<ID, TraitState> ts;
+  const History *history;
 
   void insert(ID id, Field field, BaseType val) {
     // Retreive the current TraitState of the id

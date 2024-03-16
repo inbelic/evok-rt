@@ -3,6 +3,7 @@
 
 #include "Contract.h"
 #include "ContractState.h"
+#include "History.h"
 
 #include <map>
 
@@ -11,6 +12,7 @@ using Contracts = std::map<ID, ContractPtr>;
 class Ledger {
 private:
   Contracts contracts;
+  History history;
 
 public:
   Ledger() {};
