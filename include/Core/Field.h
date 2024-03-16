@@ -1,5 +1,5 @@
-#ifndef _FIELD_HEADER_
-#define _FIELD_HEADER_
+#ifndef _CORE_FIELD_HEADER_
+#define _CORE_FIELD_HEADER_
 
 // This file *will* be auto-generated
 
@@ -12,4 +12,4 @@ enum class Field : uint8_t {
 using SetID = BaseType;
 using CardNum = BaseType;
 
-#endif // _FIELD_HEADER_
+#endif // _CORE_FIELD_HEADER_

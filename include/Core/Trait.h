@@ -1,5 +1,5 @@
-#ifndef _TRAIT_HEADER_
-#define _TRAIT_HEADER_
+#ifndef _CORE_TRAIT_HEADER_
+#define _CORE_TRAIT_HEADER_
 
 #include "BaseType.h"
 #include "ContractState.h"
@@ -18,10 +18,14 @@ private:
     TraitPtr next = nullptr;
 
 protected:
+    Trait() {};
+
     virtual std::optional<BaseType> doEval(const ContractState&, BaseType) = 0;
 
 public:
     virtual ~Trait() {};
+    
+    virtual Trait* clone() const = 0;
 
     // Evaluation
     std::optional<BaseType> eval(const ContractState& cs) {
@@ -37,4 +41,4 @@ public:
     void modify(TraitPtr _next) { next = std::move(_next); }
 };
 
-#endif // _TRAIT_HEADER_
+#endif // _CORE_TRAIT_HEADER_
