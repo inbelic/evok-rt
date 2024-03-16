@@ -26,6 +26,10 @@ pub fn build(b: *std.Build) void {
         .file = std.build.LazyPath.relative("src/main.cpp"),
         .flags = &cxxflags,
     });
+    exe.addCSourceFile(.{
+        .file = std.build.LazyPath.relative("src/Contract.cpp"),
+        .flags = &cxxflags,
+    });
     exe.linkLibC();
     exe.linkLibCpp();
 
