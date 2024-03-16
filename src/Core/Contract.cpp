@@ -26,15 +26,15 @@ Alteration Contract::reload() {
   });
 }
 
-Alteration Contract::modify(Field field, TraitPtr next) {
+Alteration Contract::modify(Field field, TraitPtr next, _Alteration alteration) {
   if (auto search = traits.find(field); search != traits.end()) {
     search->second->modify(std::move(next));
-    return _Alteration{AlterationType::Alter};
+    return alteration;
   }
   return std::nullopt;
 }
 
-Alteration Contract::replace(Field field, TraitPtr next) {
+Alteration Contract::replace(Field field, TraitPtr next, _Alteration alteration) {
   traits.insert_or_assign(field, std::move(next));
-  return _Alteration{AlterationType::Alter};
+  return alteration;
 }
