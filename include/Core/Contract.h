@@ -19,10 +19,6 @@ private:
   Traits traits;
   void reload_traits(ContractPtr);
 
-protected:
-  // Sets a base contract that it can be reloaded to
-  void setBase(ContractPtr);
-
 public:
   Contract() {};
 
@@ -30,6 +26,10 @@ public:
   Contract(ContractPtr base);
 
   virtual ~Contract() {};
+
+  // Evaluates the trait of the given field, will set found to false if the
+  // Contract does not have the trait
+  std::optional<BaseType> view(const ContractState&, Field, bool& found) const;
 
   // Will reset the contract to its base reference if the base is not a nullptr
   // and denote if it does by return an empty Changes or a Changes with a

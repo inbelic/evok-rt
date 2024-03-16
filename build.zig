@@ -30,6 +30,10 @@ pub fn build(b: *std.Build) void {
         .file = std.build.LazyPath.relative("src/Core/Contract.cpp"),
         .flags = &cxxflags,
     });
+    exe.addCSourceFile(.{
+        .file = std.build.LazyPath.relative("src/Core/Ledger.cpp"),
+        .flags = &cxxflags,
+    });
     exe.linkLibC();
     exe.linkLibCpp();
 

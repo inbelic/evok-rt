@@ -33,7 +33,7 @@ public:
     }
     std::optional<BaseType> eval(const ContractState& cs, BaseType val) {
         return doEval(cs, val).and_then([&](BaseType x) {
-            return !next ? next->eval(cs, x) : std::optional<BaseType>(x);
+            return next ? next->eval(cs, x) : x;
         });
     }
 

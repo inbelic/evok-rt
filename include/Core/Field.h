@@ -6,10 +6,10 @@
 #include "BaseType.h"
 
 enum class Field : uint8_t {
-    Undef, SetID, CardNum
+    Undef, SetID, ContractID
 };
 
 using SetID = BaseType;
-using CardNum = BaseType;
+using ContractID = BaseType;
 
 #endif // _CORE_FIELD_HEADER_
