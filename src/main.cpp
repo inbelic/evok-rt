@@ -1,6 +1,6 @@
 #include "../include/Core/Contract.h"
 #include "../include/Core/Ledger.h"
-#include "../include/Traits/Constant.h"
+#include "../include/Traits/Common.h"
 #include "../include/Core/Action.h"
 
 #include <iostream>
