@@ -9,6 +9,7 @@
 
 struct _Alteration;
 using Alteration = std::optional<_Alteration>;
+using Alterations = std::vector<Alteration>;
 
 enum class AlterationType : uint8_t {
     Alter, Reload
