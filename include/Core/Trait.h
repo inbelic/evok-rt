@@ -38,7 +38,10 @@ public:
     }
 
     // Modify the trait by appending another trait to the chain
-    void modify(TraitPtr _next) { next = std::move(_next); }
+    void modify(TraitPtr _next) {
+        if (next) next->modify(std::move(_next));
+        else next = std::move(_next);
+    }
 };
 
 #endif // _CORE_TRAIT_HEADER_
