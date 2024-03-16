@@ -1,4 +1,4 @@
-#include "../include/Core/Contract.h"
+#include "../../include/Core/Contract.h"
 
 void Contract::reload_traits(ContractPtr base) {
   traits.clear();
