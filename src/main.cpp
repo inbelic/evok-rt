@@ -4,6 +4,15 @@
 
 #include <iostream>
 #include <utility>
+#include <string>
+
+std::string fieldString(Field field) {
+  switch (field) {
+    case Field::Undef: return "Undef";
+    case Field::SetID: return "SetID";
+    case Field::ContractID: return "ContractID";
+  }
+}
 
 int main() {
   Ledger ledger = Ledger();
@@ -29,9 +38,13 @@ int main() {
   for (const auto& [id, traits] : cs.ts) {
     std::cout << std::to_string(id) << ": ";
     for (const auto& [field, val] : traits)
-      std::cout << std::to_string(std::to_underlying(field)) << "," << std::to_string(val) << " ";
+      std::cout << fieldString(field) << "->" << std::to_string(val) << " ";
     std::cout << std::endl;
   }
+
+  delete base;
+  delete c1;
+  delete c2;
 
   return 0;
 }
