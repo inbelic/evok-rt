@@ -12,7 +12,7 @@ using Alteration = std::optional<_Alteration>;
 using Alterations = std::vector<Alteration>;
 
 enum class AlterationType : uint8_t {
-    Alter, Reload
+  Shift, Set, Alter, Equip, Created, Reload
 };
 
 struct _Alteration {

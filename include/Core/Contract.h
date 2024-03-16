@@ -36,7 +36,17 @@ public:
   // Reload
   Alteration reload();
 
-  // Will append the Trait to the Field and will output an Alter Alteration
+  // Will construct a new ShiftTrait and append it to the specified field
+  // trait. It will output a Shift Altreation or nullopt if the Field is not
+  // found
+  Alteration shift(Field, BaseType);
+
+  // Will construct a new ConstantTrait and replace the specified field
+  // trait. It will output a Set Altreation or nullopt if the Field is not found
+  Alteration set(Field, BaseType);
+
+  // Will append the Trait to the Field and will output an Alter Alteration.
+  // It will output nullopt if the Field is not found
   Alteration modify(Field, TraitPtr);
 
   // Will replace the Traits of Field with the given Trait and will output a

@@ -5,6 +5,7 @@
 // action that the contract is owned by.
 struct Trigger {
   virtual bool isTriggered(const ContractState&, ID /*ContractID*/) = 0;
+  virtual ~Trigger();
 };
 // Will be a pointer to a trigger arena
 using TriggerPtr = std::unique_ptr<Trigger>;
@@ -25,6 +26,7 @@ struct Target {
 // A function that will generate a set of targets for an Action to resolve on
 struct Targeting {
   virtual std::vector<Target> getTargets(const ContractState&, ID) = 0;
+  virtual ~Targeting();
 };
 // Will be a pointer to a targeting arena
 using TargetingPtr = std::unique_ptr<Targeting>;
@@ -32,6 +34,7 @@ using TargetingPtr = std::unique_ptr<Targeting>;
 // A function that will alter a contract and output matching alterations
 struct Resolve {
   virtual Alterations resolve(ID, ID, const ContractState&, ContractPtr) = 0;
+  virtual ~Resolve();
 };
 // Will be a pointer to a resolve arena
 using ResolvePtr = std::unique_ptr<Resolve>;
