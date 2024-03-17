@@ -5,9 +5,7 @@
 
 #include "BaseType.h"
 
-enum class Field : uint8_t {
-    Undef, SetID, ContractID
-};
+enum class Field : uint8_t { Undef, SetID, ContractID };
 
 using SetID = BaseType;
 using ContractID = BaseType;

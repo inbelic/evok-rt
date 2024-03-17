@@ -17,7 +17,8 @@ Alteration set(ContractPtr contract, Field field, BaseType val) {
   return alteration;
 }
 
-MaybeAlteration clampedShift(ContractPtr contract, Field field, bool pos, BaseType val) {
+MaybeAlteration clampedShift(ContractPtr contract, Field field, bool pos,
+                             BaseType val) {
   auto trait = TraitPtr(new ClampedShiftTrait(pos, val));
   auto type = pos ? AlterationType::PosShift : AlterationType::NegShift;
   std::optional<Alteration> alteration = Alteration{type, field, val};
@@ -25,6 +26,6 @@ MaybeAlteration clampedShift(ContractPtr contract, Field field, bool pos, BaseTy
   return contract->modify(field, std::move(trait)) ? alteration : std::nullopt;
 }
 
-} // alter
+} // namespace alter
 
 #endif // _ALTERATIONS_COMMON_HEADER_

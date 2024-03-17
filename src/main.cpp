@@ -1,27 +1,30 @@
+#include "../include/Alterations/Common.h"
+#include "../include/Core/Action.h"
 #include "../include/Core/Contract.h"
 #include "../include/Core/Ledger.h"
-#include "../include/Core/Action.h"
 #include "../include/Traits/Common.h"
-#include "../include/Alterations/Common.h"
 
 #include <iostream>
-#include <utility>
 #include <string>
+#include <utility>
 
 std::string fieldString(Field field) {
   switch (field) {
-    case Field::Undef: return "Undef";
-    case Field::SetID: return "SetID";
-    case Field::ContractID: return "ContractID";
+  case Field::Undef:
+    return "Undef";
+  case Field::SetID:
+    return "SetID";
+  case Field::ContractID:
+    return "ContractID";
   }
 }
 
 void printLedger(Ledger ledger) {
   auto cs = ledger.view();
 
-  for (const auto& [id, traits] : cs.ts) {
+  for (const auto &[id, traits] : cs.ts) {
     std::cout << std::to_string(id) << ": ";
-    for (const auto& [field, val] : traits)
+    for (const auto &[field, val] : traits)
       std::cout << fieldString(field) << "->" << std::to_string(val) << " ";
     std::cout << std::endl;
   }

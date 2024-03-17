@@ -11,13 +11,14 @@ private:
   BaseType value;
 
 public:
-  ConstantTrait(BaseType value) : Trait(), value { value } {};
+  ConstantTrait(BaseType value) : Trait(), value{value} {};
 
-  Trait* clone() const override { return new ConstantTrait(value); };
+  Trait *clone() const override { return new ConstantTrait(value); };
 
-  ~ConstantTrait() {};
+  ~ConstantTrait(){};
 
-  std::optional<BaseType> doEval(const ContractState& /*cs*/, BaseType /*val*/) override {
+  std::optional<BaseType> doEval(const ContractState & /*cs*/,
+                                 BaseType /*val*/) override {
     return value;
   };
 };
@@ -28,17 +29,21 @@ private:
   BaseType value;
 
 public:
-  ClampedShiftTrait(bool pos, BaseType value) : Trait(), pos { pos }, value { value } {};
+  ClampedShiftTrait(bool pos, BaseType value)
+      : Trait(), pos{pos}, value{value} {};
 
-  Trait* clone() const override { return new ClampedShiftTrait(pos, value); };
+  Trait *clone() const override { return new ClampedShiftTrait(pos, value); };
 
-  ~ClampedShiftTrait() {};
+  ~ClampedShiftTrait(){};
 
-  std::optional<BaseType> doEval(const ContractState& /*cs*/, BaseType val) override {
+  std::optional<BaseType> doEval(const ContractState & /*cs*/,
+                                 BaseType val) override {
     BaseType posRet = std::cmp_less<BaseType, BaseType>(val + value, val)
-      ? BASETYPE_MAX : val + value;
+                          ? BASETYPE_MAX
+                          : val + value;
     BaseType negRet = std::cmp_less<BaseType, BaseType>(val, val - value)
-      ? BASETYPE_MIN : val - value;
+                          ? BASETYPE_MIN
+                          : val - value;
     return pos ? posRet : negRet;
   };
 };

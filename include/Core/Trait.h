@@ -15,33 +15,32 @@ using TraitPtr = std::unique_ptr<Trait>;
 
 class Trait {
 private:
-    TraitPtr next = nullptr;
+  TraitPtr next = nullptr;
 
 protected:
-    Trait() {};
+  Trait(){};
 
-    virtual std::optional<BaseType> doEval(const ContractState&, BaseType) = 0;
+  virtual std::optional<BaseType> doEval(const ContractState &, BaseType) = 0;
 
 public:
-    virtual ~Trait() {};
-    
-    virtual Trait* clone() const = 0;
+  virtual ~Trait(){};
 
-    // Evaluation
-    std::optional<BaseType> eval(const ContractState& cs) {
-        return eval(cs, 0);
-    }
-    std::optional<BaseType> eval(const ContractState& cs, BaseType val) {
-        return doEval(cs, val).and_then([&](BaseType x) {
-            return next ? next->eval(cs, x) : x;
-        });
-    }
+  virtual Trait *clone() const = 0;
 
-    // Modify the trait by appending another trait to the chain
-    void modify(TraitPtr _next) {
-        if (next) next->modify(std::move(_next));
-        else next = std::move(_next);
-    }
+  // Evaluation
+  std::optional<BaseType> eval(const ContractState &cs) { return eval(cs, 0); }
+  std::optional<BaseType> eval(const ContractState &cs, BaseType val) {
+    return doEval(cs, val).and_then(
+        [&](BaseType x) { return next ? next->eval(cs, x) : x; });
+  }
+
+  // Modify the trait by appending another trait to the chain
+  void modify(TraitPtr _next) {
+    if (next)
+      next->modify(std::move(_next));
+    else
+      next = std::move(_next);
+  }
 };
 
 #endif // _CORE_TRAIT_HEADER_

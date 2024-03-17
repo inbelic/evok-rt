@@ -10,7 +10,7 @@
 using Traits = std::map<Field, TraitPtr>;
 
 class Contract;
-using ContractPtr = Contract*; // Will have a contract arena for base Contracts
+using ContractPtr = Contract *; // Will have a contract arena for base Contracts
 
 class Contract {
 private:
@@ -20,17 +20,17 @@ private:
   void reload_traits(ContractPtr);
 
 public:
-  Contract() {};
+  Contract(){};
 
   // Initialize a contract from a given base.
   Contract(ContractPtr base);
 
-  virtual ~Contract() {};
+  virtual ~Contract(){};
 
   // Evaluates the trait of the given field, will set found to false if the
   // Contract does not have the trait. nullopt denotes that is was unable to
   // evaluate the field
-  std::optional<BaseType> view(const ContractState&, Field, bool& found) const;
+  std::optional<BaseType> view(const ContractState &, Field, bool &found) const;
 
   // Will reset the contract to its base reference if the base is not a nullptr
   // and denote if it does by return an empty Changes or a Changes with a

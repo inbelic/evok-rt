@@ -3,15 +3,14 @@
 void Contract::reload_traits(ContractPtr base) {
   traits.clear();
   // Deep copy traits
-  for (const auto& [field, trait] : base->traits)
+  for (const auto &[field, trait] : base->traits)
     traits[field] = TraitPtr(trait->clone());
 }
 
-Contract::Contract(ContractPtr base) : base { base } {
-  reload_traits(base);
-}
+Contract::Contract(ContractPtr base) : base{base} { reload_traits(base); }
 
-std::optional<BaseType> Contract::view(const ContractState& cs, Field field, bool &found) const {
+std::optional<BaseType> Contract::view(const ContractState &cs, Field field,
+                                       bool &found) const {
   if (auto search = traits.find(field); search != traits.end()) {
     return search->second->eval(cs);
   }

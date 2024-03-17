@@ -15,7 +15,7 @@ private:
   History history;
 
 public:
-  Ledger() {};
+  Ledger(){};
 
   // Add a contract to the Ledger map and returned the generated ID
   ID addContract(ContractPtr);

@@ -3,11 +3,12 @@
 
 #include <queue>
 
-static ID computeID(const Contracts& contracts) {
+static ID computeID(const Contracts &contracts) {
   // Simply increment on the maximum contract ID
   ID gen_id = 0;
-  for (const auto& [key, contract] : contracts) {
-    if (key > gen_id) gen_id = key;
+  for (const auto &[key, contract] : contracts) {
+    if (key > gen_id)
+      gen_id = key;
   }
   return gen_id + 1;
 }
@@ -20,12 +21,12 @@ ID Ledger::addContract(ContractPtr contract) {
 
 using WorkQueue = std::queue<std::pair<ID, FieldMask>>;
 
-static WorkQueue initWorkQueue(const Contracts& contracts) {
+static WorkQueue initWorkQueue(const Contracts &contracts) {
   WorkQueue work_queue;
 
   // If field is set then it is unresolved (this will set all fields to
   // unresolved)
-  for (const auto& [id, _contract] : contracts)
+  for (const auto &[id, _contract] : contracts)
     work_queue.push({id, baseMask});
   return work_queue;
 }
@@ -49,7 +50,8 @@ ContractState Ledger::view() {
     // Find the contract to work on
     auto search = contracts.find(id);
     // If not found then we can skip (shouldn't happen)
-    if (search == contracts.end()) continue;
+    if (search == contracts.end())
+      continue;
     // Otherwise, extract out for ease of use
     ContractPtr contract = search->second;
 
@@ -62,18 +64,21 @@ ContractState Ledger::view() {
         auto val = contract->view(cs, field, found);
         // If we successfully evaluated it then we can insert it into the
         // ContractState, cs
-        if (val) cs.insert(id, field, *val);
+        if (val)
+          cs.insert(id, field, *val);
         // When successfully evaluated or not found then we the field is
         // resolved (if it is not found then the contract does not have the
         // field and there is nothing to resolve)
-        if (val || !found) mask = clearField(mask, field);
+        if (val || !found)
+          mask = clearField(mask, field);
       } else {
         mask = clearField(mask, field);
       }
     }
     // If the mask is 0 then all fields are resolved, otherwise we will need to
     // put it back on the work queue
-    if (mask != 0) work_queue.push({id, mask});
+    if (mask != 0)
+      work_queue.push({id, mask});
   }
   return cs;
 }

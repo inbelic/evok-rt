@@ -17,7 +17,8 @@ struct ContractState {
     // Retreive the current TraitState of the id
     auto search_ts = ts.find(id);
     TraitState traits;
-    if (search_ts != ts.end()) traits = search_ts->second;
+    if (search_ts != ts.end())
+      traits = search_ts->second;
 
     // Insert the evaluated value to the field
     traits[field] = val;
