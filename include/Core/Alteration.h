@@ -11,8 +11,10 @@ struct Alteration;
 using MaybeAlteration = std::optional<Alteration>;
 using Alterations = std::vector<Alteration>;
 
+// This should be easy to extend (may be auto-generated)
 enum class AlterationType : uint8_t {
-  PosShift, NegShift, Set, Alter, Equip, Created, Reload
+  Alter, Equip, Created, Reload, // Core
+  PosShift, NegShift, Set       // Extended
 };
 
 struct Alteration {
