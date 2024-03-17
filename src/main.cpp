@@ -15,6 +15,17 @@ std::string fieldString(Field field) {
   }
 }
 
+void printLedger(Ledger ledger) {
+  auto cs = ledger.view();
+
+  for (const auto& [id, traits] : cs.ts) {
+    std::cout << std::to_string(id) << ": ";
+    for (const auto& [field, val] : traits)
+      std::cout << fieldString(field) << "->" << std::to_string(val) << " ";
+    std::cout << std::endl;
+  }
+}
+
 int main() {
   Ledger ledger = Ledger();
   ContractPtr base = new Contract();
@@ -34,14 +45,17 @@ int main() {
   ledger.addContract(c1);
   ledger.addContract(c2);
 
-  auto cs = ledger.view();
+  printLedger(ledger);
 
-  for (const auto& [id, traits] : cs.ts) {
-    std::cout << std::to_string(id) << ": ";
-    for (const auto& [field, val] : traits)
-      std::cout << fieldString(field) << "->" << std::to_string(val) << " ";
-    std::cout << std::endl;
-  }
+  auto shift4 = TraitPtr(new ClampedShiftTrait(true, 4));
+  auto shift5 = TraitPtr(new ClampedShiftTrait(false, 5));
+  auto shift4c = TraitPtr(shift4->clone());
+
+  c1->modify(Field::ContractID, std::move(shift4), Alteration{AlterationType::PosShift, Field::ContractID, 4});
+  c2->modify(Field::SetID, std::move(shift5), Alteration{AlterationType::NegShift, Field::SetID, 5});
+  c2->modify(Field::SetID, std::move(shift4c), Alteration{AlterationType::PosShift, Field::SetID, 4});
+
+  printLedger(ledger);
 
   delete base;
   delete c1;
