@@ -34,15 +34,15 @@ public:
   // Will reset the contract to its base reference if the base is not a nullptr
   // and denote if it does by return an empty Changes or a Changes with a
   // Reload
-  Alteration reload();
+  MaybeAlteration reload();
 
   // Will append the Trait to the Field and will output an Alter Alteration.
   // It will output nullopt if the Field is not found
-  Alteration modify(Field, TraitPtr, _Alteration = _Alteration{AlterationType::Alter});
+  MaybeAlteration modify(Field, TraitPtr, Alteration = Alteration{AlterationType::Alter});
 
   // Will replace the Traits of Field with the given Trait and will output a
   // Alter Alteration
-  Alteration replace(Field, TraitPtr, _Alteration = _Alteration{AlterationType::Alter});
+  MaybeAlteration replace(Field, TraitPtr, Alteration = Alteration{AlterationType::Alter});
 };
 
 #endif // _CORE_CONTRACT_HEADER_

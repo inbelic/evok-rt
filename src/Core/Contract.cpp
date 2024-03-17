@@ -19,14 +19,14 @@ std::optional<BaseType> Contract::view(const ContractState& cs, Field field, boo
   return std::nullopt;
 }
 
-Alteration Contract::reload() {
+MaybeAlteration Contract::reload() {
   return base.transform([&](ContractPtr contract) {
     this->reload_traits(contract);
-    return _Alteration{AlterationType::Reload};
+    return Alteration{AlterationType::Reload};
   });
 }
 
-Alteration Contract::modify(Field field, TraitPtr next, _Alteration alteration) {
+MaybeAlteration Contract::modify(Field field, TraitPtr next, Alteration alteration) {
   if (auto search = traits.find(field); search != traits.end()) {
     search->second->modify(std::move(next));
     return alteration;
@@ -34,7 +34,7 @@ Alteration Contract::modify(Field field, TraitPtr next, _Alteration alteration) 
   return std::nullopt;
 }
 
-Alteration Contract::replace(Field field, TraitPtr next, _Alteration alteration) {
+MaybeAlteration Contract::replace(Field field, TraitPtr next, Alteration alteration) {
   traits.insert_or_assign(field, std::move(next));
   return alteration;
 }

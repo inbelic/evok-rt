@@ -7,15 +7,15 @@
 #include <vector>
 #include <optional>
 
-struct _Alteration;
-using Alteration = std::optional<_Alteration>;
+struct Alteration;
+using MaybeAlteration = std::optional<Alteration>;
 using Alterations = std::vector<Alteration>;
 
 enum class AlterationType : uint8_t {
   PosShift, NegShift, Set, Alter, Equip, Created, Reload
 };
 
-struct _Alteration {
+struct Alteration {
     AlterationType type;
     Field field = Field::Undef;
     BaseType value = 0;
