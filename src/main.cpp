@@ -51,9 +51,9 @@ int main() {
   auto shift5 = TraitPtr(new ClampedShiftTrait(false, 5));
   auto shift4c = TraitPtr(shift4->clone());
 
-  c1->modify(Field::ContractID, std::move(shift4), Alteration{AlterationType::PosShift, Field::ContractID, 4});
-  c2->modify(Field::SetID, std::move(shift5), Alteration{AlterationType::NegShift, Field::SetID, 5});
-  c2->modify(Field::SetID, std::move(shift4c), Alteration{AlterationType::PosShift, Field::SetID, 4});
+  c1->modify(Field::ContractID, std::move(shift4));
+  c2->modify(Field::SetID, std::move(shift5));
+  c2->modify(Field::SetID, std::move(shift4c));
 
   printLedger(ledger);
 

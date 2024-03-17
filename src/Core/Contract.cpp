@@ -26,15 +26,14 @@ MaybeAlteration Contract::reload() {
   });
 }
 
-MaybeAlteration Contract::modify(Field field, TraitPtr next, Alteration alteration) {
+bool Contract::modify(Field field, TraitPtr next) {
   if (auto search = traits.find(field); search != traits.end()) {
     search->second->modify(std::move(next));
-    return alteration;
+    return true;
   }
-  return std::nullopt;
+  return false;
 }
 
-MaybeAlteration Contract::replace(Field field, TraitPtr next, Alteration alteration) {
+void Contract::replace(Field field, TraitPtr next) {
   traits.insert_or_assign(field, std::move(next));
-  return alteration;
 }

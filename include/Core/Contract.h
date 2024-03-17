@@ -28,7 +28,8 @@ public:
   virtual ~Contract() {};
 
   // Evaluates the trait of the given field, will set found to false if the
-  // Contract does not have the trait
+  // Contract does not have the trait. nullopt denotes that is was unable to
+  // evaluate the field
   std::optional<BaseType> view(const ContractState&, Field, bool& found) const;
 
   // Will reset the contract to its base reference if the base is not a nullptr
@@ -36,13 +37,12 @@ public:
   // Reload
   MaybeAlteration reload();
 
-  // Will append the Trait to the Field and will output an Alter Alteration.
-  // It will output nullopt if the Field is not found
-  MaybeAlteration modify(Field, TraitPtr, Alteration = Alteration{AlterationType::Alter});
+  // Will append the Trait to the Alteration.Field and will output an
+  // Alter Alteration. Boolean output denotes if the field was found and applied
+  bool modify(Field, TraitPtr);
 
-  // Will replace the Traits of Field with the given Trait and will output a
-  // Alter Alteration
-  MaybeAlteration replace(Field, TraitPtr, Alteration = Alteration{AlterationType::Alter});
+  // Will replace the Traits of Alteration.Field with the given Trait
+  void replace(Field, TraitPtr);
 };
 
 #endif // _CORE_CONTRACT_HEADER_
