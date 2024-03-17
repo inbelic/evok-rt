@@ -1,8 +1,8 @@
-#include "../include/evok/Alterations/Common.h"
-#include "../include/evok/Core/Action.h"
-#include "../include/evok/Core/Contract.h"
-#include "../include/evok/Core/Ledger.h"
-#include "../include/evok/Traits/Common.h"
+#include "evok/Alterations/Common.h"
+#include "evok/Core/Action.h"
+#include "evok/Core/Contract.h"
+#include "evok/Core/Ledger.h"
+#include "evok/Traits/Common.h"
 
 #include <iostream>
 #include <string>

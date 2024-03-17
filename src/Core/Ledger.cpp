@@ -1,5 +1,5 @@
-#include "../../include/evok/Core/Ledger.h"
-#include "../../include/evok/Core/FieldMask.h"
+#include "evok/Core/Ledger.h"
+#include "evok/Core/FieldMask.h"
 
 #include <queue>
 

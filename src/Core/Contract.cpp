@@ -1,4 +1,4 @@
-#include "../../include/evok/Core/Contract.h"
+#include "evok/Core/Contract.h"
 
 namespace evok {
 
