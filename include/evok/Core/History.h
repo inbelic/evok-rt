@@ -1,8 +1,10 @@
-#ifndef _CORE_HISTORY_HEADER_
-#define _CORE_HISTORY_HEADER_
+#ifndef _EVOK_CORE_HISTORY_HEADER_
+#define _EVOK_CORE_HISTORY_HEADER_
 
 #include "Alteration.h"
 #include <vector>
+
+namespace evok {
 
 struct Event {
   ID actor;
@@ -19,4 +21,6 @@ public:
   History(){};
 };
 
-#endif // _CORE_HISTORY_HEADER_
+} // namespace evok
+
+#endif // _EVOK_CORE_HISTORY_HEADER_

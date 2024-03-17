@@ -1,11 +1,13 @@
-#ifndef _CORE_LEDGER_HEADER_
-#define _CORE_LEDGER_HEADER_
+#ifndef _EVOK_CORE_LEDGER_HEADER_
+#define _EVOK_CORE_LEDGER_HEADER_
 
 #include "Contract.h"
 #include "ContractState.h"
 #include "History.h"
 
 #include <map>
+
+namespace evok {
 
 using Contracts = std::map<ID, ContractPtr>;
 
@@ -24,4 +26,6 @@ public:
   ContractState view();
 };
 
-#endif // _CORE_LEDGER_HEADER_
+} // namespace evok
+
+#endif // _EVOK_CORE_LEDGER_HEADER_

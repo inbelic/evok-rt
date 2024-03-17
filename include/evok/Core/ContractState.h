@@ -1,11 +1,13 @@
-#ifndef _CORE_CONTRACTSTATE_HEADER_
-#define _CORE_CONTRACTSTATE_HEADER_
+#ifndef _EVOK_CORE_CONTRACTSTATE_HEADER_
+#define _EVOK_CORE_CONTRACTSTATE_HEADER_
 
 #include "BaseType.h"
 #include "Field.h"
 #include "History.h"
 
 #include <map>
+
+namespace evok {
 
 using TraitState = std::map<Field, BaseType>;
 
@@ -27,4 +29,6 @@ struct ContractState {
   };
 };
 
-#endif // _CORE_CONTRACTSTATE_HEADER_
+} // namespace evok
+
+#endif // _EVOK_CORE_CONTRACTSTATE_HEADER_

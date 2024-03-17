@@ -1,10 +1,13 @@
-#ifndef _TRAITS_CONSTANT_HEADER_
-#define _TRAITS_CONSTANT_HEADER_
+#ifndef _EVOK_TRAITS_COMMON_HEADER_
+#define _EVOK_TRAITS_COMMON_HEADER_
 
 #include "../Core/BaseType.h"
 #include "../Core/Trait.h"
 
 #include <utility>
+
+namespace evok {
+namespace trait {
 
 class ConstantTrait : public Trait {
 private:
@@ -48,4 +51,7 @@ public:
   };
 };
 
-#endif // _TRAITS_CONSTANT_HEADER_
+} // namespace trait
+} // namespace evok
+
+#endif // _EVOK_TRAITS_COMMON_HEADER_

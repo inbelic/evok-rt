@@ -1,5 +1,7 @@
-#ifndef _CORE_ACTION_HEADER_
-#define _CORE_ACTION_HEADER_
+#ifndef _EVOK_CORE_ACTION_HEADER_
+#define _EVOK_CORE_ACTION_HEADER_
+
+namespace evok {
 
 // A function that will check if the action triggers. ID denotes the ID of the
 // action that the contract is owned by.
@@ -51,4 +53,6 @@ struct Action {
   virtual ~Action(){};
 };
 
-#endif // _CORE_ACTION_HEADER_
+} // namespace evok
+
+#endif // _EVOK_CORE_ACTION_HEADER_

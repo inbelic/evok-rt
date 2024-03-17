@@ -1,5 +1,5 @@
-#ifndef _CORE_TRAIT_HEADER_
-#define _CORE_TRAIT_HEADER_
+#ifndef _EVOK_CORE_TRAIT_HEADER_
+#define _EVOK_CORE_TRAIT_HEADER_
 
 #include "BaseType.h"
 #include "ContractState.h"
@@ -8,6 +8,9 @@
 #include <optional>
 
 #include <memory>
+
+namespace evok {
+
 // Temporary pointer of a Trait. TODO: Will implement an arena allocater and
 // TraitPtr will be an index in the arena.
 class Trait;
@@ -43,4 +46,6 @@ public:
   }
 };
 
-#endif // _CORE_TRAIT_HEADER_
+} // namespace evok
+
+#endif // _EVOK_CORE_TRAIT_HEADER_

@@ -1,11 +1,13 @@
-#ifndef _CORE_CONTRACT_HEADER_
-#define _CORE_CONTRACT_HEADER_
+#ifndef _EVOK_CORE_CONTRACT_HEADER_
+#define _EVOK_CORE_CONTRACT_HEADER_
 
 #include "Alteration.h"
 #include "Field.h"
 #include "Trait.h"
 
 #include <map>
+
+namespace evok {
 
 using Traits = std::map<Field, TraitPtr>;
 
@@ -45,4 +47,6 @@ public:
   void replace(Field, TraitPtr);
 };
 
-#endif // _CORE_CONTRACT_HEADER_
+} // namespace evok
+
+#endif // _EVOK_CORE_CONTRACT_HEADER_

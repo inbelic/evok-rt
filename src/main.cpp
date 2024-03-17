@@ -1,12 +1,14 @@
-#include "../include/Alterations/Common.h"
-#include "../include/Core/Action.h"
-#include "../include/Core/Contract.h"
-#include "../include/Core/Ledger.h"
-#include "../include/Traits/Common.h"
+#include "../include/evok/Alterations/Common.h"
+#include "../include/evok/Core/Action.h"
+#include "../include/evok/Core/Contract.h"
+#include "../include/evok/Core/Ledger.h"
+#include "../include/evok/Traits/Common.h"
 
 #include <iostream>
 #include <string>
 #include <utility>
+
+using namespace evok;
 
 std::string fieldString(Field field) {
   switch (field) {

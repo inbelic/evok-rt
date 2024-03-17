@@ -1,4 +1,6 @@
-#include "../../include/Core/Contract.h"
+#include "../../include/evok/Core/Contract.h"
+
+namespace evok {
 
 void Contract::reload_traits(ContractPtr base) {
   traits.clear();
@@ -36,3 +38,5 @@ bool Contract::modify(Field field, TraitPtr next) {
 void Contract::replace(Field field, TraitPtr next) {
   traits.insert_or_assign(field, std::move(next));
 }
+
+} // namespace evok

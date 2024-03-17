@@ -1,7 +1,9 @@
-#include "../../include/Core/Ledger.h"
-#include "../../include/Core/FieldMask.h"
+#include "../../include/evok/Core/Ledger.h"
+#include "../../include/evok/Core/FieldMask.h"
 
 #include <queue>
+
+namespace evok {
 
 static ID computeID(const Contracts &contracts) {
   // Simply increment on the maximum contract ID
@@ -82,3 +84,5 @@ ContractState Ledger::view() {
   }
   return cs;
 }
+
+} // namespace evok

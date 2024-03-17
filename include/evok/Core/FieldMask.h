@@ -1,5 +1,7 @@
-#ifndef _CORE_FIELDMASK_HEADER_
-#define _CORE_FIELDMASK_HEADER_
+#ifndef _EVOK_CORE_FIELDMASK_HEADER_
+#define _EVOK_CORE_FIELDMASK_HEADER_
+
+namespace evok {
 
 // This file *will* be auto-generated
 
@@ -39,4 +41,6 @@ bool isFieldSet(FieldMask mask, Field field) {
   return mask & (1 << fieldID(field));
 }
 
-#endif // _CORE_FIELDMASK_HEADER_
+} // namespace evok
+
+#endif // _EVOK_CORE_FIELDMASK_HEADER_

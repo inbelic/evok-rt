@@ -1,11 +1,13 @@
-#ifndef _CORE_ALTERATION_HEADER_
-#define _CORE_ALTERATION_HEADER_
+#ifndef _EVOK_CORE_ALTERATION_HEADER_
+#define _EVOK_CORE_ALTERATION_HEADER_
 
 #include "BaseType.h"
 #include "Field.h"
 
 #include <optional>
 #include <vector>
+
+namespace evok {
 
 struct Alteration;
 using MaybeAlteration = std::optional<Alteration>;
@@ -28,4 +30,6 @@ struct Alteration {
   BaseType value = 0;
 };
 
-#endif // _CORE_ALTERATION_HEADER_
+} // namespace evok
+
+#endif // _EVOK_CORE_ALTERATION_HEADER_
