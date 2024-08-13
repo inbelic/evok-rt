@@ -23,15 +23,15 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     exe.addCSourceFile(.{
-        .file = std.build.LazyPath.relative("src/main.cpp"),
+        .file = b.path("src/main.cpp"),
         .flags = &cxxflags,
     });
     exe.addCSourceFile(.{
-        .file = std.build.LazyPath.relative("src/Core/Contract.cpp"),
+        .file = b.path("src/Core/Contract.cpp"),
         .flags = &cxxflags,
     });
     exe.addCSourceFile(.{
-        .file = std.build.LazyPath.relative("src/Core/Ledger.cpp"),
+        .file = b.path("src/Core/Ledger.cpp"),
         .flags = &cxxflags,
     });
     exe.linkLibC();
