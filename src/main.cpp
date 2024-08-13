@@ -34,30 +34,26 @@ void printLedger(Ledger ledger) {
 
 int main() {
   Ledger ledger = Ledger();
-  ContractPtr base = new Contract();
-  alter::set(base, Field::SetID, 1);
-  alter::set(base, Field::ContractID, 2);
+  Contract base = Contract();
+  alter::set(&base, Field::SetID, 1);
+  alter::set(&base, Field::ContractID, 2);
 
-  ContractPtr c1 = new Contract(base);
-  alter::set(c1, Field::SetID, 3);
+  Contract c1 = Contract(&base);
+  alter::set(&c1, Field::SetID, 3);
 
-  ContractPtr c2 = new Contract(base);
-  alter::set(c2, Field::ContractID, 4);
+  Contract c2 = Contract(&base);
+  alter::set(&c2, Field::ContractID, 4);
 
-  ledger.addContract(c1);
-  ledger.addContract(c2);
-
-  printLedger(ledger);
-
-  alter::clampedShift(c1, Field::ContractID, true, 4);
-  alter::clampedShift(c2, Field::SetID, false, 5);
-  alter::clampedShift(c2, Field::SetID, true, 3);
+  ledger.addContract(&c1);
+  ledger.addContract(&c2);
 
   printLedger(ledger);
 
-  delete base;
-  delete c1;
-  delete c2;
+  alter::clampedShift(&c1, Field::ContractID, true, 4);
+  alter::clampedShift(&c2, Field::SetID, false, 5);
+  alter::clampedShift(&c2, Field::SetID, true, 3);
+
+  printLedger(ledger);
 
   return 0;
 }
