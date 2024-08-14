@@ -8,11 +8,13 @@
 #include <optional>
 
 #include <memory>
+#include <unordered_set>
 
 namespace evok {
 
 class Trait;
 using TraitPtr = Trait *;
+using TraitSet = std::unordered_set<TraitPtr>;
 
 class Trait {
 private:
@@ -39,6 +41,12 @@ public:
   // Modify the trait by appending another trait to the chain
   void modify(TraitPtr _next) {
     next = _next;
+  }
+
+  // Mark this trait as currently being used
+  void mark(TraitSet &marked) {
+    marked.insert(this);
+    if (next) next->mark(marked);
   }
 };
 

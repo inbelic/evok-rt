@@ -29,6 +29,9 @@ public:
 
   virtual ~Contract(){};
 
+  // Goes through all the stored traits and marks them as allocated
+  void markTraits(TraitSet &);
+
   // Evaluates the trait of the given field, will set found to false if the
   // Contract does not have the trait. nullopt denotes that is was unable to
   // evaluate the field

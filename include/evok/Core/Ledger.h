@@ -3,6 +3,7 @@
 
 #include "Contract.h"
 #include "ContractState.h"
+#include "Trait.h"
 #include "History.h"
 
 #include <map>
@@ -16,6 +17,8 @@ private:
   Contracts contracts;
   History history;
 
+  TraitSet allocated;
+
 public:
   Ledger(){};
 
@@ -24,6 +27,9 @@ public:
 
   // Evaluate the traits of all contracts to get a state with types
   ContractState view();
+
+  // Mark all used traits in allocated and free all unused traits
+  void rebaseTraits();
 };
 
 } // namespace evok

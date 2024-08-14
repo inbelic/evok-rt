@@ -18,7 +18,23 @@ static ID computeID(const Contracts &contracts) {
 ID Ledger::addContract(ContractPtr contract) {
   ID id = computeID(contracts);
   contracts[id] = contract;
+  contract->markTraits(allocated);
   return id;
+}
+
+void Ledger::rebaseTraits() {
+  TraitSet used;
+  for (auto it : contracts) {
+    it.second->markTraits(used);
+  }
+
+  for (auto it : allocated) {
+    if (!used.contains(it)) {
+      delete it;
+    }
+  }
+
+  allocated = used;
 }
 
 using WorkQueue = std::queue<std::pair<ID, FieldMask>>;

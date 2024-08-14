@@ -11,6 +11,12 @@ void Contract::reload_traits(ContractPtr base) {
 
 Contract::Contract(ContractPtr base) : base{base} { reload_traits(base); }
 
+void Contract::markTraits(TraitSet &marked) {
+  for (auto it : traits) {
+    it.second->mark(marked);
+  }
+}
+
 std::optional<BaseType> Contract::view(const ContractState &cs, Field field,
                                        bool &found) const {
   if (auto search = traits.find(field); search != traits.end()) {
