@@ -14,7 +14,7 @@ Alteration set(ContractPtr contract, Field field, BaseType val) {
   auto trait = TraitPtr(new trait::ConstantTrait(val));
   auto alteration = Alteration{AlterationType::Set, field, val};
 
-  contract->replace(field, std::move(trait));
+  contract->replace(field, trait);
   return alteration;
 }
 
@@ -24,7 +24,7 @@ MaybeAlteration clampedShift(ContractPtr contract, Field field, bool pos,
   auto type = pos ? AlterationType::PosShift : AlterationType::NegShift;
   std::optional<Alteration> alteration = Alteration{type, field, val};
 
-  return contract->modify(field, std::move(trait)) ? alteration : std::nullopt;
+  return contract->modify(field, trait) ? alteration : std::nullopt;
 }
 
 } // namespace alter

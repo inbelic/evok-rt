@@ -16,7 +16,7 @@ private:
 public:
   ConstantTrait(BaseType value) : Trait(), value{value} {};
 
-  Trait *clone() const override { return new ConstantTrait(value); };
+  TraitPtr clone() const override { return new ConstantTrait(value); };
 
   ~ConstantTrait(){};
 
@@ -35,7 +35,7 @@ public:
   ClampedShiftTrait(bool pos, BaseType value)
       : Trait(), pos{pos}, value{value} {};
 
-  Trait *clone() const override { return new ClampedShiftTrait(pos, value); };
+  TraitPtr clone() const override { return new ClampedShiftTrait(pos, value); };
 
   ~ClampedShiftTrait(){};
 

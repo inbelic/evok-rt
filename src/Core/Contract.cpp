@@ -29,14 +29,15 @@ MaybeAlteration Contract::reload() {
 
 bool Contract::modify(Field field, TraitPtr next) {
   if (auto search = traits.find(field); search != traits.end()) {
-    search->second->modify(std::move(next));
+    next->modify(search->second);
+    search->second = next;
     return true;
   }
   return false;
 }
 
 void Contract::replace(Field field, TraitPtr next) {
-  traits.insert_or_assign(field, std::move(next));
+  traits.insert_or_assign(field, next);
 }
 
 } // namespace evok

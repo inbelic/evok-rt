@@ -11,10 +11,8 @@
 
 namespace evok {
 
-// Temporary pointer of a Trait. TODO: Will implement an arena allocater and
-// TraitPtr will be an index in the arena.
 class Trait;
-using TraitPtr = std::unique_ptr<Trait>;
+using TraitPtr = Trait *;
 
 class Trait {
 private:
@@ -28,21 +26,19 @@ protected:
 public:
   virtual ~Trait(){};
 
-  virtual Trait *clone() const = 0;
+  virtual TraitPtr clone() const = 0;
 
   // Evaluation
   std::optional<BaseType> eval(const ContractState &cs) { return eval(cs, 0); }
   std::optional<BaseType> eval(const ContractState &cs, BaseType val) {
-    return doEval(cs, val).and_then(
-        [&](BaseType x) { return next ? next->eval(cs, x) : x; });
+    return next
+      ? next->eval(cs, val).and_then([&](BaseType x) { return doEval(cs, x); })
+      : doEval(cs, val);
   }
 
   // Modify the trait by appending another trait to the chain
   void modify(TraitPtr _next) {
-    if (next)
-      next->modify(std::move(_next));
-    else
-      next = std::move(_next);
+    next = _next;
   }
 };
 
